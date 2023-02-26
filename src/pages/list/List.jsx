@@ -4,11 +4,13 @@ import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import "./list.css";
 import format from "date-fns/format";
+import { DateRange } from "react-date-range";
 
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
+  const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
   return (
     <div>
@@ -24,10 +26,17 @@ const List = () => {
             </div>
             <div className="lsItem">
               <label htmlFor="">Check-in Date</label>
-              <span>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                date[0].endDate,
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
                 "MM/dd/yyyy"
-              )}`}</span>
+              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  ranges={date}
+                />
+              )}
             </div>
           </div>
           <div className="listResult"></div>

@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
-
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -120,6 +119,7 @@ const Header = ({ type }) => {
                     moveRangeOnFirstSelection={false}
                     ranges={date}
                     className="date"
+                    minDate={new Date()}
                   />
                 )}
               </div>
