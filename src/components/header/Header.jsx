@@ -44,6 +44,7 @@ const Header = ({ type }) => {
     });
   };
 
+  //  search btn linking a new path route ----------------
   const handleSearch = () => {
     navigate("/hotels", { state: { destination, date, options } });
   };
